@@ -1,14 +1,15 @@
 from tkinter import *
 from PIL import ImageTk, Image
+import pygame
 
 root = Tk()
 root.title('Image Slideshow Program')
 root.geometry('512x635')
-icon = PhotoImage(file='icon.png')
+icon = PhotoImage(file='images/icon.png')
 root.iconphoto(True, icon)
 root.minsize(512, 635)
 root.maxsize(512, 635)
-root.resizable(0, 0)
+root.resizable(False, False)
 im1 = ImageTk.PhotoImage(Image.open('images/aliendude.png'))
 im2 = ImageTk.PhotoImage(Image.open('images/bluesmurfcat.png'))
 im3 = ImageTk.PhotoImage(Image.open('images/imspongebob.png'))
@@ -35,4 +36,7 @@ button = Button(root, text="Next Image", font=('Minecraft Pixel Font 5x5 Regular
 infoLabel.pack()
 imageLabel.pack()
 button.pack()
+pygame.mixer.init()
+pygame.mixer.music.load("music/album.wav")
+pygame.mixer.music.play(-1)
 root.mainloop()
