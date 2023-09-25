@@ -1,8 +1,10 @@
 from tkinter import *
+from tkinter import filedialog
 from PIL import ImageTk, Image, ImageFilter
 import pygame
 import random
 import os
+import webbrowser
 
 root = Tk()
 root.title('Image Slideshow Program')
@@ -225,10 +227,333 @@ def sharpen():
         os.remove(str(randomname3) + ".png")
 
 
+def smoothen():
+    randomname1 = random.randint(1, 10000)
+    randomname2 = random.randint(1, 10000)
+    randomname3 = randomname1 + randomname2
+    if counter == 0:
+        global im1pil
+        global im1tk
+        im1pil.save(str(randomname3) + ".png")
+        im1pil = Image.open(str(randomname3) + ".png")
+        im1pil = im1pil.convert('RGB')
+        im1pil = im1pil.filter(ImageFilter.SMOOTH)
+        im1pil.save(str(randomname3) + ".png")
+        im1tk = PhotoImage(file=str(randomname3) + ".png")
+        imageLabel.config(image=im1tk)
+        os.remove(str(randomname3) + ".png")
+    if counter == 1:
+        global im2pil
+        global im2tk
+        im2pil.save(str(randomname3) + ".png")
+        im2pil = Image.open(str(randomname3) + ".png")
+        im2pil = im2pil.convert('RGB')
+        im2pil = im2pil.filter(ImageFilter.SMOOTH)
+        im2pil.save(str(randomname3) + ".png")
+        im2tk = PhotoImage(file=str(randomname3) + ".png")
+        imageLabel.config(image=im2tk)
+        os.remove(str(randomname3) + ".png")
+    if counter == 2:
+        global im3pil
+        global im3tk
+        im3pil.save(str(randomname3) + ".png")
+        im3pil = Image.open(str(randomname3) + ".png")
+        im3pil = im3pil.convert('RGB')
+        im3pil = im3pil.filter(ImageFilter.SMOOTH)
+        im3pil.save(str(randomname3) + ".png")
+        im3tk = PhotoImage(file=str(randomname3) + ".png")
+        imageLabel.config(image=im3tk)
+        os.remove(str(randomname3) + ".png")
+    if counter == 3:
+        global im4pil
+        global im4tk
+        im4pil.save(str(randomname3) + ".png")
+        im4pil = Image.open(str(randomname3) + ".png")
+        im4pil = im4pil.convert('RGB')
+        im4pil = im4pil.filter(ImageFilter.SMOOTH)
+        im4pil.save(str(randomname3) + ".png")
+        im4tk = PhotoImage(file=str(randomname3) + ".png")
+        imageLabel.config(image=im4tk)
+        os.remove(str(randomname3) + ".png")
+    if counter == 4:
+        global im5pil
+        global im5tk
+        im5pil.save(str(randomname3) + ".png")
+        im5pil = Image.open(str(randomname3) + ".png")
+        im5pil = im5pil.convert('RGB')
+        im5pil = im5pil.filter(ImageFilter.SMOOTH)
+        im5pil.save(str(randomname3) + ".png")
+        im5tk = PhotoImage(file=str(randomname3) + ".png")
+        imageLabel.config(image=im5tk)
+        os.remove(str(randomname3) + ".png")
+
+
+def detail():
+    randomname1 = random.randint(1, 10000)
+    randomname2 = random.randint(1, 10000)
+    randomname3 = randomname1 + randomname2
+    if counter == 0:
+        global im1pil
+        global im1tk
+        im1pil.save(str(randomname3) + ".png")
+        im1pil = Image.open(str(randomname3) + ".png")
+        im1pil = im1pil.convert('RGB')
+        im1pil = im1pil.filter(ImageFilter.DETAIL)
+        im1pil.save(str(randomname3) + ".png")
+        im1tk = PhotoImage(file=str(randomname3) + ".png")
+        imageLabel.config(image=im1tk)
+        os.remove(str(randomname3) + ".png")
+    if counter == 1:
+        global im2pil
+        global im2tk
+        im2pil.save(str(randomname3) + ".png")
+        im2pil = Image.open(str(randomname3) + ".png")
+        im2pil = im2pil.convert('RGB')
+        im2pil = im2pil.filter(ImageFilter.DETAIL)
+        im2pil.save(str(randomname3) + ".png")
+        im2tk = PhotoImage(file=str(randomname3) + ".png")
+        imageLabel.config(image=im2tk)
+        os.remove(str(randomname3) + ".png")
+    if counter == 2:
+        global im3pil
+        global im3tk
+        im3pil.save(str(randomname3) + ".png")
+        im3pil = Image.open(str(randomname3) + ".png")
+        im3pil = im3pil.convert('RGB')
+        im3pil = im3pil.filter(ImageFilter.DETAIL)
+        im3pil.save(str(randomname3) + ".png")
+        im3tk = PhotoImage(file=str(randomname3) + ".png")
+        imageLabel.config(image=im3tk)
+        os.remove(str(randomname3) + ".png")
+    if counter == 3:
+        global im4pil
+        global im4tk
+        im4pil.save(str(randomname3) + ".png")
+        im4pil = Image.open(str(randomname3) + ".png")
+        im4pil = im4pil.convert('RGB')
+        im4pil = im4pil.filter(ImageFilter.DETAIL)
+        im4pil.save(str(randomname3) + ".png")
+        im4tk = PhotoImage(file=str(randomname3) + ".png")
+        imageLabel.config(image=im4tk)
+        os.remove(str(randomname3) + ".png")
+    if counter == 4:
+        global im5pil
+        global im5tk
+        im5pil.save(str(randomname3) + ".png")
+        im5pil = Image.open(str(randomname3) + ".png")
+        im5pil = im5pil.convert('RGB')
+        im5pil = im5pil.filter(ImageFilter.DETAIL)
+        im5pil.save(str(randomname3) + ".png")
+        im5tk = PhotoImage(file=str(randomname3) + ".png")
+        imageLabel.config(image=im5tk)
+        os.remove(str(randomname3) + ".png")
+
+
+def contour():
+    randomname1 = random.randint(1, 10000)
+    randomname2 = random.randint(1, 10000)
+    randomname3 = randomname1 + randomname2
+    if counter == 0:
+        global im1pil
+        global im1tk
+        im1pil.save(str(randomname3) + ".png")
+        im1pil = Image.open(str(randomname3) + ".png")
+        im1pil = im1pil.convert('RGB')
+        im1pil = im1pil.filter(ImageFilter.CONTOUR)
+        im1pil.save(str(randomname3) + ".png")
+        im1tk = PhotoImage(file=str(randomname3) + ".png")
+        imageLabel.config(image=im1tk)
+        os.remove(str(randomname3) + ".png")
+    if counter == 1:
+        global im2pil
+        global im2tk
+        im2pil.save(str(randomname3) + ".png")
+        im2pil = Image.open(str(randomname3) + ".png")
+        im2pil = im2pil.convert('RGB')
+        im2pil = im2pil.filter(ImageFilter.CONTOUR)
+        im2pil.save(str(randomname3) + ".png")
+        im2tk = PhotoImage(file=str(randomname3) + ".png")
+        imageLabel.config(image=im2tk)
+        os.remove(str(randomname3) + ".png")
+    if counter == 2:
+        global im3pil
+        global im3tk
+        im3pil.save(str(randomname3) + ".png")
+        im3pil = Image.open(str(randomname3) + ".png")
+        im3pil = im3pil.convert('RGB')
+        im3pil = im3pil.filter(ImageFilter.CONTOUR)
+        im3pil.save(str(randomname3) + ".png")
+        im3tk = PhotoImage(file=str(randomname3) + ".png")
+        imageLabel.config(image=im3tk)
+        os.remove(str(randomname3) + ".png")
+    if counter == 3:
+        global im4pil
+        global im4tk
+        im4pil.save(str(randomname3) + ".png")
+        im4pil = Image.open(str(randomname3) + ".png")
+        im4pil = im4pil.convert('RGB')
+        im4pil = im4pil.filter(ImageFilter.CONTOUR)
+        im4pil.save(str(randomname3) + ".png")
+        im4tk = PhotoImage(file=str(randomname3) + ".png")
+        imageLabel.config(image=im4tk)
+        os.remove(str(randomname3) + ".png")
+    if counter == 4:
+        global im5pil
+        global im5tk
+        im5pil.save(str(randomname3) + ".png")
+        im5pil = Image.open(str(randomname3) + ".png")
+        im5pil = im5pil.convert('RGB')
+        im5pil = im5pil.filter(ImageFilter.CONTOUR)
+        im5pil.save(str(randomname3) + ".png")
+        im5tk = PhotoImage(file=str(randomname3) + ".png")
+        imageLabel.config(image=im5tk)
+        os.remove(str(randomname3) + ".png")
+
+
+def emboss():
+    randomname1 = random.randint(1, 10000)
+    randomname2 = random.randint(1, 10000)
+    randomname3 = randomname1 + randomname2
+    if counter == 0:
+        global im1pil
+        global im1tk
+        im1pil.save(str(randomname3) + ".png")
+        im1pil = Image.open(str(randomname3) + ".png")
+        im1pil = im1pil.convert('RGB')
+        im1pil = im1pil.filter(ImageFilter.EMBOSS)
+        im1pil.save(str(randomname3) + ".png")
+        im1tk = PhotoImage(file=str(randomname3) + ".png")
+        imageLabel.config(image=im1tk)
+        os.remove(str(randomname3) + ".png")
+    if counter == 1:
+        global im2pil
+        global im2tk
+        im2pil.save(str(randomname3) + ".png")
+        im2pil = Image.open(str(randomname3) + ".png")
+        im2pil = im2pil.convert('RGB')
+        im2pil = im2pil.filter(ImageFilter.EMBOSS)
+        im2pil.save(str(randomname3) + ".png")
+        im2tk = PhotoImage(file=str(randomname3) + ".png")
+        imageLabel.config(image=im2tk)
+        os.remove(str(randomname3) + ".png")
+    if counter == 2:
+        global im3pil
+        global im3tk
+        im3pil.save(str(randomname3) + ".png")
+        im3pil = Image.open(str(randomname3) + ".png")
+        im3pil = im3pil.convert('RGB')
+        im3pil = im3pil.filter(ImageFilter.EMBOSS)
+        im3pil.save(str(randomname3) + ".png")
+        im3tk = PhotoImage(file=str(randomname3) + ".png")
+        imageLabel.config(image=im3tk)
+        os.remove(str(randomname3) + ".png")
+    if counter == 3:
+        global im4pil
+        global im4tk
+        im4pil.save(str(randomname3) + ".png")
+        im4pil = Image.open(str(randomname3) + ".png")
+        im4pil = im4pil.convert('RGB')
+        im4pil = im4pil.filter(ImageFilter.EMBOSS)
+        im4pil.save(str(randomname3) + ".png")
+        im4tk = PhotoImage(file=str(randomname3) + ".png")
+        imageLabel.config(image=im4tk)
+        os.remove(str(randomname3) + ".png")
+    if counter == 4:
+        global im5pil
+        global im5tk
+        im5pil.save(str(randomname3) + ".png")
+        im5pil = Image.open(str(randomname3) + ".png")
+        im5pil = im5pil.convert('RGB')
+        im5pil = im5pil.filter(ImageFilter.EMBOSS)
+        im5pil.save(str(randomname3) + ".png")
+        im5tk = PhotoImage(file=str(randomname3) + ".png")
+        imageLabel.config(image=im5tk)
+        os.remove(str(randomname3) + ".png")
+
+
+def open():
+    randomname1 = random.randint(1, 10000)
+    randomname2 = random.randint(1, 10000)
+    randomname3 = randomname1 + randomname2
+    newsize = (512, 512)
+    filename = filedialog.askopenfilename(initialdir="/",title="Select a File",filetypes=(("Image files","*.png;*.jpeg;*.jpg;*.bmp;*.xpm;*.dds;*.psd;*.webp;*.tiff;*.tga;*.dds;*.dib;*.icns;*.ico;*.im;*.msp;*.wmf;*.emf;*.pcx;*.pbm;*.ppm;*.pgm;*.pnm;*.sgi;*.blp;*.eps;*.sun;*.wal"),("All files","*.*")))
+    if counter == 0:
+        global im1pil
+        global im1tk
+        im1pil = Image.open(str(filename))
+        im1pil = im1pil.resize(newsize, 0)
+        im1pil = im1pil.convert('RGB')
+        im1pil.save(str(randomname3) + ".png")
+        im1tk = PhotoImage(file=str(randomname3) + ".png")
+        imageLabel.config(image=im1tk)
+        os.remove(str(randomname3) + ".png")
+    if counter == 1:
+        global im2pil
+        global im2tk
+        im2pil = Image.open(str(filename))
+        im2pil = im2pil.resize(newsize, 0)
+        im2pil = im2pil.convert('RGB')
+        im2pil.save(str(randomname3) + ".png")
+        im2tk = PhotoImage(file=str(randomname3) + ".png")
+        imageLabel.config(image=im2tk)
+        os.remove(str(randomname3) + ".png")
+    if counter == 2:
+        global im3pil
+        global im3tk
+        im3pil = Image.open(str(filename))
+        im3pil = im3pil.resize(newsize, 0)
+        im3pil = im3pil.convert('RGB')
+        im3pil.save(str(randomname3) + ".png")
+        im3tk = PhotoImage(file=str(randomname3) + ".png")
+        imageLabel.config(image=im3tk)
+        os.remove(str(randomname3) + ".png")
+    if counter == 3:
+        global im4pil
+        global im4tk
+        im4pil = Image.open(str(filename))
+        im4pil = im4pil.resize(newsize, 0)
+        im4pil = im4pil.convert('RGB')
+        im4pil.save(str(randomname3) + ".png")
+        im4tk = PhotoImage(file=str(randomname3) + ".png")
+        imageLabel.config(image=im4tk)
+        os.remove(str(randomname3) + ".png")
+    if counter == 4:
+        global im5pil
+        global im5tk
+        im5pil = Image.open(str(filename))
+        im5pil = im5pil.resize(newsize, 0)
+        im5pil = im5pil.convert('RGB')
+        im5pil.save(str(randomname3) + ".png")
+        im5tk = PhotoImage(file=str(randomname3) + ".png")
+        imageLabel.config(image=im5tk)
+        os.remove(str(randomname3) + ".png")
+
+
+def musicon():
+    pygame.mixer.music.unpause()
+def musicoff():
+    pygame.mixer.music.pause()
+
+
 def helpinfo():
+    def callback(url):
+        webbrowser.open_new_tab(url)
+
     helpwindow = Toplevel(root)
-    helpwindow.title("Help")
-    helpwindow.geometry("250x250")
+    helpwindow.title("Info")
+    helpwindow.geometry("350x150")
+    helpwindow.minsize(350, 150)
+    helpwindow.maxsize(350, 150)
+    helpwindow.resizable(False, False)
+    helptext = Label(helpwindow,
+                     text="Credits:\nPython: Python Software Foundation.\nTkinter: Steen Lumholt and Guido van Rossum.\nPillow: Fredrik Lundh, Jeffrey A. Clark.\nPygame: Pete Shinners.\nRandom: Python Software Foundation.\nOS: Python Software Foundation.\nWebBrowser: Python Software Foundation.",
+                     font=('Minecraft Pixel Font 5x5 Regular', 6))
+    helptext.pack()
+    githublink = Label(helpwindow, text='Source Code', font=('Minecraft Pixel Font 5x5 Regular', 22), fg="blue",
+                       cursor="hand2")
+    githublink.pack()
+    githublink.bind("<Button-1>", lambda e:
+    callback("https://github.com/LandonPerkinsProsser/SimpleImageSlideshow"))
     helpwindow.mainloop()
 
 
@@ -241,15 +566,24 @@ infoLabel = Label(root, text='Image ' + str(counter + 1) + ' of ' + str(len(imag
                   font=('Minecraft Pixel Font 5x5 Regular', 20))
 menubar1 = Menu(root)
 filemenu1 = Menu(menubar1, tearoff=0)
+filemenu1.add_command(label="Open", command=open)
 filemenu1.add_command(label="Save", command=save)
 menubar1.add_cascade(label="File", menu=filemenu1)
 filemenu2 = Menu(menubar1, tearoff=0)
 filemenu2.add_command(label="Blur", command=blur)
 filemenu2.add_command(label="Sharpen", command=sharpen)
+filemenu2.add_command(label="Smooth", command=smoothen)
+filemenu2.add_command(label="Detail", command=detail)
+filemenu2.add_command(label="Contour", command=contour)
+filemenu2.add_command(label="Emboss", command=emboss)
 menubar1.add_cascade(label="Edit", menu=filemenu2)
 filemenu3 = Menu(menubar1, tearoff=0)
-filemenu3.add_command(label="Info", command=helpinfo)
-menubar1.add_cascade(label="Help", menu=filemenu3)
+filemenu3.add_command(label="Music On", command=musicon)
+filemenu3.add_command(label="Music Off", command=musicoff)
+menubar1.add_cascade(label="Music", menu=filemenu3)
+filemenu4 = Menu(menubar1, tearoff=0)
+filemenu4.add_command(label="Info", command=helpinfo)
+menubar1.add_cascade(label="Help", menu=filemenu4)
 root.config(menu=menubar1)
 button = Button(root, text="Next Image", font=('Minecraft Pixel Font 5x5 Regular', 20), command=nextimage)
 infoLabel.pack()
