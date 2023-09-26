@@ -21,7 +21,7 @@ SIGF is a user-friendly Python application that allows you to browse a collectio
 SIGF relies on several Python libraries and modules. Ensure you have the following requirements installed before using the application:
 
 - **Python:** SIGF is built with Python and should work on any system with Python installed.
-- **Tkinter:** Tkinter is used for the graphical user interface.
+- **Tkinter:** Tkinter is used for the graphical user interface and opening save and open file windows.
 - **Pillow:** Pillow is used for image processing and manipulation.
 - **Pygame:** Pygame is used to play background music.
 - **WinSound:** A standard python module for playing sound effects.
