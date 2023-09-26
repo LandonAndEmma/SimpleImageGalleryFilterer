@@ -76,7 +76,7 @@ Contributions to SIGF are welcome! If you have any suggestions, bug reports, or 
 ## Credits
 
 - The images are not created by me, the first image is from the Mexican Government when they unvailed a "Alien" to the public, the second image being of the smurf cat meme by Nate Hallinan, the third image being Spongebob by Nickelodeon, the fourth image being Jonesy from Fortnite by Epic Games, and the last image being of the Python Logo on a global internet background by the Python Foundation.
-- The sounds come from Nintendo games and software, the button sound comes from multiple sounds from the DSi Shop just combined together, the edit sound comes from multiple sounds the Mii Channel also combined together, and the save sound comes straight from Mario Kart Wii.
+- The sounds come from Nintendo games and software, the button sound comes from multiple sounds from the DSi Shop just combined together, the edit sound comes from multiple sounds from the Mii Channel also combined together, and the save sound comes straight from Mario Kart Wii.
 
 ## License
 
