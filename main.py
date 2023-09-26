@@ -1,18 +1,23 @@
+import os
+import random
+import webbrowser
 from tkinter import *
 from tkinter import filedialog
-from PIL import ImageTk, Image, ImageFilter
 import pygame
-import random
-import os
-import webbrowser
+import winsound
+from PIL import Image, ImageFilter
+
+clicksound = 'sounds/click.wav'
+editsound = 'sounds/edit.wav'
+savesound = 'sounds/success.wav'
 
 root = Tk()
 root.title('Image Slideshow Program')
-root.geometry('512x635')
+root.geometry('512x707')
 icon = PhotoImage(file='images/icon.png')
 root.iconphoto(True, icon)
-root.minsize(512, 635)
-root.maxsize(512, 635)
+root.minsize(512, 707)
+root.maxsize(512, 707)
 root.resizable(False, False)
 
 
@@ -46,6 +51,7 @@ def defineimages():
 
 def nextimage():
     global counter
+    winsound.PlaySound(clicksound, winsound.SND_FILENAME)
     if counter < len(image_list) - 1:
         counter += 1
     else:
@@ -69,40 +75,182 @@ def nextimage():
     infoLabel.config(text='Image ' + str(counter + 1) + ' of ' + str(len(image_list)))
 
 
-def save():
+def lastimage():
+    global counter
+    winsound.PlaySound(clicksound, winsound.SND_FILENAME)
+    if counter > 0:
+        counter -= 1
+    else:
+        counter = 4
+    imageLabel.configure(image=image_list[counter])
+    if counter == 0:
+        global im1tk
+        imageLabel.config(image=im1tk)
+    if counter == 1:
+        global im2tk
+        imageLabel.config(image=im2tk)
+    if counter == 2:
+        global im3tk
+        imageLabel.config(image=im3tk)
+    if counter == 3:
+        global im4tk
+        imageLabel.config(image=im4tk)
+    if counter == 4:
+        global im5tk
+        imageLabel.config(image=im5tk)
+    infoLabel.config(text='Image ' + str(counter + 1) + ' of ' + str(len(image_list)))
+
+
+def savefile():
     randomname1 = random.randint(1, 10000)
     randomname2 = random.randint(1, 10000)
     randomname3 = randomname1 + randomname2
+    filename = filedialog.asksaveasfilename(initialdir="/", title="Save As", filetypes=(("Image files",
+                                                                                         "*.png;*.jpeg;*.jpg;*.bmp;*.dds;*.webp;*.tga;*.dds"),
+                                                                                        ("All files", "*.*")))
+    if counter == 0:
+        global im1pil
+        im1pil.save(str(randomname3) + ".png")
+        im1pil = Image.open(str(randomname3) + ".png")
+        im1pil = im1pil.convert('RGB')
+        os.remove(str(randomname3) + ".png")
+        im1pil.save(filename)
+        winsound.PlaySound(savesound, winsound.SND_FILENAME)
+    if counter == 1:
+        global im2pil
+        im2pil.save(str(randomname3) + ".png")
+        im2pil = Image.open(str(randomname3) + ".png")
+        im2pil = im1pil.convert('RGB')
+        os.remove(str(randomname3) + ".png")
+        im2pil.save(filename)
+        winsound.PlaySound(savesound, winsound.SND_FILENAME)
+    if counter == 2:
+        global im3pil
+        im3pil.save(str(randomname3) + ".png")
+        im3pil = Image.open(str(randomname3) + ".png")
+        im3pil = im1pil.convert('RGB')
+        os.remove(str(randomname3) + ".png")
+        im3pil.save(filename)
+        winsound.PlaySound(savesound, winsound.SND_FILENAME)
+    if counter == 3:
+        global im4pil
+        im4pil.save(str(randomname3) + ".png")
+        im4pil = Image.open(str(randomname3) + ".png")
+        im4pil = im1pil.convert('RGB')
+        os.remove(str(randomname3) + ".png")
+        im4pil.save(filename)
+        winsound.PlaySound(savesound, winsound.SND_FILENAME)
+    if counter == 4:
+        global im5pil
+        im5pil.save(str(randomname3) + ".png")
+        im5pil = Image.open(str(randomname3) + ".png")
+        im5pil = im1pil.convert('RGB')
+        os.remove(str(randomname3) + ".png")
+        im5pil.save(filename)
+        winsound.PlaySound(savesound, winsound.SND_FILENAME)
+
+
+def openfile():
+    randomname1 = random.randint(1, 10000)
+    randomname2 = random.randint(1, 10000)
+    randomname3 = randomname1 + randomname2
+    newsize = (512, 512)
+    filename = filedialog.askopenfilename(initialdir="/", title="Open", filetypes=(("Image files",
+                                                                                    "*.png;*.jpeg;*.jpg;*.bmp;*.xpm;*.dds;*.psd;*.webp;*.tiff;*.tga;*.dds;*.dib;*.icns;*.ico;*.im;*.msp;*.wmf;*.emf;*.pcx;*.pbm;*.ppm;*.pgm;*.pnm;*.sgi;*.blp;*.eps;*.sun;*.wal"),
+                                                                                   ("All files", "*.*")))
     if counter == 0:
         global im1pil
         global im1tk
+        im1pil = Image.open(str(filename))
+        im1pil = im1pil.resize(newsize, 0)
+        im1pil = im1pil.convert('RGB')
         im1pil.save(str(randomname3) + ".png")
         im1tk = PhotoImage(file=str(randomname3) + ".png")
         imageLabel.config(image=im1tk)
+        os.remove(str(randomname3) + ".png")
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
     if counter == 1:
         global im2pil
         global im2tk
+        im2pil = Image.open(str(filename))
+        im2pil = im2pil.resize(newsize, 0)
+        im2pil = im2pil.convert('RGB')
         im2pil.save(str(randomname3) + ".png")
         im2tk = PhotoImage(file=str(randomname3) + ".png")
         imageLabel.config(image=im2tk)
+        os.remove(str(randomname3) + ".png")
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
     if counter == 2:
         global im3pil
         global im3tk
+        im3pil = Image.open(str(filename))
+        im3pil = im3pil.resize(newsize, 0)
+        im3pil = im3pil.convert('RGB')
         im3pil.save(str(randomname3) + ".png")
         im3tk = PhotoImage(file=str(randomname3) + ".png")
         imageLabel.config(image=im3tk)
+        os.remove(str(randomname3) + ".png")
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
     if counter == 3:
         global im4pil
         global im4tk
+        im4pil = Image.open(str(filename))
+        im4pil = im4pil.resize(newsize, 0)
+        im4pil = im4pil.convert('RGB')
         im4pil.save(str(randomname3) + ".png")
         im4tk = PhotoImage(file=str(randomname3) + ".png")
         imageLabel.config(image=im4tk)
+        os.remove(str(randomname3) + ".png")
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
     if counter == 4:
         global im5pil
         global im5tk
+        im5pil = Image.open(str(filename))
+        im5pil = im5pil.resize(newsize, 0)
+        im5pil = im5pil.convert('RGB')
         im5pil.save(str(randomname3) + ".png")
         im5tk = PhotoImage(file=str(randomname3) + ".png")
         imageLabel.config(image=im5tk)
+        os.remove(str(randomname3) + ".png")
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
+
+
+def resetimages():
+    if counter == 0:
+        global im1pil
+        global im1tk
+        im1pil = Image.open("images/aliendude.png")
+        im1tk = PhotoImage(file='images/aliendude.png')
+        imageLabel.config(image=im1tk)
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
+    if counter == 1:
+        global im2pil
+        global im2tk
+        im2pil = Image.open("images/bluesmurfcat.png")
+        im2tk = PhotoImage(file='images/bluesmurfcat.png')
+        imageLabel.config(image=im2tk)
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
+    if counter == 2:
+        global im3pil
+        global im3tk
+        im3pil = Image.open("images/imspongebob.png")
+        im3tk = PhotoImage(file='images/imspongebob.png')
+        imageLabel.config(image=im3tk)
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
+    if counter == 3:
+        global im4pil
+        global im4tk
+        im4pil = Image.open("images/jonesy.png")
+        im4tk = PhotoImage(file='images/jonesy.png')
+        imageLabel.config(image=im4tk)
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
+    if counter == 4:
+        global im5pil
+        global im5tk
+        im5pil = Image.open("images/pythonlogo.png")
+        im5tk = PhotoImage(file='images/pythonlogo.png')
+        imageLabel.config(image=im5tk)
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
 
 
 def blur():
@@ -120,6 +268,7 @@ def blur():
         im1tk = PhotoImage(file=str(randomname3) + ".png")
         imageLabel.config(image=im1tk)
         os.remove(str(randomname3) + ".png")
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
     if counter == 1:
         global im2pil
         global im2tk
@@ -131,6 +280,7 @@ def blur():
         im2tk = PhotoImage(file=str(randomname3) + ".png")
         imageLabel.config(image=im2tk)
         os.remove(str(randomname3) + ".png")
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
     if counter == 2:
         global im3pil
         global im3tk
@@ -142,6 +292,7 @@ def blur():
         im3tk = PhotoImage(file=str(randomname3) + ".png")
         imageLabel.config(image=im3tk)
         os.remove(str(randomname3) + ".png")
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
     if counter == 3:
         global im4pil
         global im4tk
@@ -153,6 +304,7 @@ def blur():
         im4tk = PhotoImage(file=str(randomname3) + ".png")
         imageLabel.config(image=im4tk)
         os.remove(str(randomname3) + ".png")
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
     if counter == 4:
         global im5pil
         global im5tk
@@ -164,6 +316,7 @@ def blur():
         im5tk = PhotoImage(file=str(randomname3) + ".png")
         imageLabel.config(image=im5tk)
         os.remove(str(randomname3) + ".png")
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
 
 
 def sharpen():
@@ -181,6 +334,7 @@ def sharpen():
         im1tk = PhotoImage(file=str(randomname3) + ".png")
         imageLabel.config(image=im1tk)
         os.remove(str(randomname3) + ".png")
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
     if counter == 1:
         global im2pil
         global im2tk
@@ -192,6 +346,7 @@ def sharpen():
         im2tk = PhotoImage(file=str(randomname3) + ".png")
         imageLabel.config(image=im2tk)
         os.remove(str(randomname3) + ".png")
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
     if counter == 2:
         global im3pil
         global im3tk
@@ -203,6 +358,7 @@ def sharpen():
         im3tk = PhotoImage(file=str(randomname3) + ".png")
         imageLabel.config(image=im3tk)
         os.remove(str(randomname3) + ".png")
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
     if counter == 3:
         global im4pil
         global im4tk
@@ -214,6 +370,7 @@ def sharpen():
         im4tk = PhotoImage(file=str(randomname3) + ".png")
         imageLabel.config(image=im4tk)
         os.remove(str(randomname3) + ".png")
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
     if counter == 4:
         global im5pil
         global im5tk
@@ -225,6 +382,7 @@ def sharpen():
         im5tk = PhotoImage(file=str(randomname3) + ".png")
         imageLabel.config(image=im5tk)
         os.remove(str(randomname3) + ".png")
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
 
 
 def smoothen():
@@ -242,6 +400,7 @@ def smoothen():
         im1tk = PhotoImage(file=str(randomname3) + ".png")
         imageLabel.config(image=im1tk)
         os.remove(str(randomname3) + ".png")
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
     if counter == 1:
         global im2pil
         global im2tk
@@ -253,6 +412,7 @@ def smoothen():
         im2tk = PhotoImage(file=str(randomname3) + ".png")
         imageLabel.config(image=im2tk)
         os.remove(str(randomname3) + ".png")
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
     if counter == 2:
         global im3pil
         global im3tk
@@ -264,6 +424,7 @@ def smoothen():
         im3tk = PhotoImage(file=str(randomname3) + ".png")
         imageLabel.config(image=im3tk)
         os.remove(str(randomname3) + ".png")
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
     if counter == 3:
         global im4pil
         global im4tk
@@ -275,6 +436,7 @@ def smoothen():
         im4tk = PhotoImage(file=str(randomname3) + ".png")
         imageLabel.config(image=im4tk)
         os.remove(str(randomname3) + ".png")
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
     if counter == 4:
         global im5pil
         global im5tk
@@ -286,6 +448,7 @@ def smoothen():
         im5tk = PhotoImage(file=str(randomname3) + ".png")
         imageLabel.config(image=im5tk)
         os.remove(str(randomname3) + ".png")
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
 
 
 def detail():
@@ -303,6 +466,7 @@ def detail():
         im1tk = PhotoImage(file=str(randomname3) + ".png")
         imageLabel.config(image=im1tk)
         os.remove(str(randomname3) + ".png")
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
     if counter == 1:
         global im2pil
         global im2tk
@@ -314,6 +478,7 @@ def detail():
         im2tk = PhotoImage(file=str(randomname3) + ".png")
         imageLabel.config(image=im2tk)
         os.remove(str(randomname3) + ".png")
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
     if counter == 2:
         global im3pil
         global im3tk
@@ -325,6 +490,7 @@ def detail():
         im3tk = PhotoImage(file=str(randomname3) + ".png")
         imageLabel.config(image=im3tk)
         os.remove(str(randomname3) + ".png")
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
     if counter == 3:
         global im4pil
         global im4tk
@@ -336,6 +502,7 @@ def detail():
         im4tk = PhotoImage(file=str(randomname3) + ".png")
         imageLabel.config(image=im4tk)
         os.remove(str(randomname3) + ".png")
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
     if counter == 4:
         global im5pil
         global im5tk
@@ -347,6 +514,7 @@ def detail():
         im5tk = PhotoImage(file=str(randomname3) + ".png")
         imageLabel.config(image=im5tk)
         os.remove(str(randomname3) + ".png")
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
 
 
 def contour():
@@ -364,6 +532,7 @@ def contour():
         im1tk = PhotoImage(file=str(randomname3) + ".png")
         imageLabel.config(image=im1tk)
         os.remove(str(randomname3) + ".png")
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
     if counter == 1:
         global im2pil
         global im2tk
@@ -375,6 +544,7 @@ def contour():
         im2tk = PhotoImage(file=str(randomname3) + ".png")
         imageLabel.config(image=im2tk)
         os.remove(str(randomname3) + ".png")
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
     if counter == 2:
         global im3pil
         global im3tk
@@ -386,6 +556,7 @@ def contour():
         im3tk = PhotoImage(file=str(randomname3) + ".png")
         imageLabel.config(image=im3tk)
         os.remove(str(randomname3) + ".png")
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
     if counter == 3:
         global im4pil
         global im4tk
@@ -397,6 +568,7 @@ def contour():
         im4tk = PhotoImage(file=str(randomname3) + ".png")
         imageLabel.config(image=im4tk)
         os.remove(str(randomname3) + ".png")
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
     if counter == 4:
         global im5pil
         global im5tk
@@ -408,6 +580,7 @@ def contour():
         im5tk = PhotoImage(file=str(randomname3) + ".png")
         imageLabel.config(image=im5tk)
         os.remove(str(randomname3) + ".png")
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
 
 
 def emboss():
@@ -425,6 +598,7 @@ def emboss():
         im1tk = PhotoImage(file=str(randomname3) + ".png")
         imageLabel.config(image=im1tk)
         os.remove(str(randomname3) + ".png")
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
     if counter == 1:
         global im2pil
         global im2tk
@@ -436,6 +610,7 @@ def emboss():
         im2tk = PhotoImage(file=str(randomname3) + ".png")
         imageLabel.config(image=im2tk)
         os.remove(str(randomname3) + ".png")
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
     if counter == 2:
         global im3pil
         global im3tk
@@ -447,6 +622,7 @@ def emboss():
         im3tk = PhotoImage(file=str(randomname3) + ".png")
         imageLabel.config(image=im3tk)
         os.remove(str(randomname3) + ".png")
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
     if counter == 3:
         global im4pil
         global im4tk
@@ -458,6 +634,7 @@ def emboss():
         im4tk = PhotoImage(file=str(randomname3) + ".png")
         imageLabel.config(image=im4tk)
         os.remove(str(randomname3) + ".png")
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
     if counter == 4:
         global im5pil
         global im5tk
@@ -469,68 +646,13 @@ def emboss():
         im5tk = PhotoImage(file=str(randomname3) + ".png")
         imageLabel.config(image=im5tk)
         os.remove(str(randomname3) + ".png")
-
-
-def open():
-    randomname1 = random.randint(1, 10000)
-    randomname2 = random.randint(1, 10000)
-    randomname3 = randomname1 + randomname2
-    newsize = (512, 512)
-    filename = filedialog.askopenfilename(initialdir="/",title="Select a File",filetypes=(("Image files","*.png;*.jpeg;*.jpg;*.bmp;*.xpm;*.dds;*.psd;*.webp;*.tiff;*.tga;*.dds;*.dib;*.icns;*.ico;*.im;*.msp;*.wmf;*.emf;*.pcx;*.pbm;*.ppm;*.pgm;*.pnm;*.sgi;*.blp;*.eps;*.sun;*.wal"),("All files","*.*")))
-    if counter == 0:
-        global im1pil
-        global im1tk
-        im1pil = Image.open(str(filename))
-        im1pil = im1pil.resize(newsize, 0)
-        im1pil = im1pil.convert('RGB')
-        im1pil.save(str(randomname3) + ".png")
-        im1tk = PhotoImage(file=str(randomname3) + ".png")
-        imageLabel.config(image=im1tk)
-        os.remove(str(randomname3) + ".png")
-    if counter == 1:
-        global im2pil
-        global im2tk
-        im2pil = Image.open(str(filename))
-        im2pil = im2pil.resize(newsize, 0)
-        im2pil = im2pil.convert('RGB')
-        im2pil.save(str(randomname3) + ".png")
-        im2tk = PhotoImage(file=str(randomname3) + ".png")
-        imageLabel.config(image=im2tk)
-        os.remove(str(randomname3) + ".png")
-    if counter == 2:
-        global im3pil
-        global im3tk
-        im3pil = Image.open(str(filename))
-        im3pil = im3pil.resize(newsize, 0)
-        im3pil = im3pil.convert('RGB')
-        im3pil.save(str(randomname3) + ".png")
-        im3tk = PhotoImage(file=str(randomname3) + ".png")
-        imageLabel.config(image=im3tk)
-        os.remove(str(randomname3) + ".png")
-    if counter == 3:
-        global im4pil
-        global im4tk
-        im4pil = Image.open(str(filename))
-        im4pil = im4pil.resize(newsize, 0)
-        im4pil = im4pil.convert('RGB')
-        im4pil.save(str(randomname3) + ".png")
-        im4tk = PhotoImage(file=str(randomname3) + ".png")
-        imageLabel.config(image=im4tk)
-        os.remove(str(randomname3) + ".png")
-    if counter == 4:
-        global im5pil
-        global im5tk
-        im5pil = Image.open(str(filename))
-        im5pil = im5pil.resize(newsize, 0)
-        im5pil = im5pil.convert('RGB')
-        im5pil.save(str(randomname3) + ".png")
-        im5tk = PhotoImage(file=str(randomname3) + ".png")
-        imageLabel.config(image=im5tk)
-        os.remove(str(randomname3) + ".png")
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
 
 
 def musicon():
     pygame.mixer.music.unpause()
+
+
 def musicoff():
     pygame.mixer.music.pause()
 
@@ -546,7 +668,7 @@ def helpinfo():
     helpwindow.maxsize(350, 150)
     helpwindow.resizable(False, False)
     helptext = Label(helpwindow,
-                     text="Credits:\nPython: Python Software Foundation.\nTkinter: Steen Lumholt and Guido van Rossum.\nPillow: Fredrik Lundh, Jeffrey A. Clark.\nPygame: Pete Shinners.\nRandom: Python Software Foundation.\nOS: Python Software Foundation.\nWebBrowser: Python Software Foundation.",
+                     text="Credits:\nPython: Python Software Foundation.\nTkinter: Steen Lumholt and Guido van Rossum.\nPillow: Fredrik Lundh, Jeffrey A. Clark.\nPygame: Pete Shinners.\nWinsound: Python Software Foundation\nRandom: Python Software Foundation.\nOS: Python Software Foundation.\nWebBrowser: Python Software Foundation.",
                      font=('Minecraft Pixel Font 5x5 Regular', 6))
     helptext.pack()
     githublink = Label(helpwindow, text='Source Code', font=('Minecraft Pixel Font 5x5 Regular', 22), fg="blue",
@@ -566,8 +688,9 @@ infoLabel = Label(root, text='Image ' + str(counter + 1) + ' of ' + str(len(imag
                   font=('Minecraft Pixel Font 5x5 Regular', 20))
 menubar1 = Menu(root)
 filemenu1 = Menu(menubar1, tearoff=0)
-filemenu1.add_command(label="Open", command=open)
-filemenu1.add_command(label="Save", command=save)
+filemenu1.add_command(label="Save", command=savefile)
+filemenu1.add_command(label="Open", command=openfile)
+filemenu1.add_command(label="Reset", command=resetimages)
 menubar1.add_cascade(label="File", menu=filemenu1)
 filemenu2 = Menu(menubar1, tearoff=0)
 filemenu2.add_command(label="Blur", command=blur)
@@ -585,10 +708,12 @@ filemenu4 = Menu(menubar1, tearoff=0)
 filemenu4.add_command(label="Info", command=helpinfo)
 menubar1.add_cascade(label="Help", menu=filemenu4)
 root.config(menu=menubar1)
-button = Button(root, text="Next Image", font=('Minecraft Pixel Font 5x5 Regular', 20), command=nextimage)
+nextbutton = Button(root, text="Next Image", font=('Minecraft Pixel Font 5x5 Regular', 20), command=nextimage)
+backbutton = Button(root, text="Last Image", font=('Minecraft Pixel Font 5x5 Regular', 20), command=lastimage)
 infoLabel.pack()
 imageLabel.pack()
-button.pack()
+nextbutton.pack()
+backbutton.pack()
 pygame.mixer.init()
 pygame.mixer.music.load("music/album.wav")
 pygame.mixer.music.play(-1)
