@@ -13,7 +13,8 @@ SIGF is a user-friendly Python application created by Landon Perkins at Prosser 
 
 - Browse and navigate through a collection of images.
 - Apply various image filters, including blur, sharpen, smooth, detail, contour, and emboss.
-- Save edited images or load new ones.
+- Crop/zoom into the center of the image based on how many pixels you want it to zoom into.
+- Save edited images or load your own.
 - Easy-to-use graphical user interface.
 
 ## Requirements
