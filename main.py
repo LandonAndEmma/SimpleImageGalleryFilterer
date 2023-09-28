@@ -10,7 +10,7 @@ from PIL import Image, ImageFilter
 clicksound = 'sounds/click.wav'
 editsound = 'sounds/edit.wav'
 savesound = 'sounds/success.wav'
-
+newsize = (512, 512)
 root = Tk()
 root.title('Image Slideshow Program')
 root.geometry('512x707')
@@ -151,10 +151,10 @@ def savefile():
 
 
 def openfile():
+    global newsize
     randomname1 = random.randint(1, 10000)
     randomname2 = random.randint(1, 10000)
     randomname3 = randomname1 + randomname2
-    newsize = (512, 512)
     filename = filedialog.askopenfilename(initialdir="/", title="Open", filetypes=(("Image files",
                                                                                     "*.png;*.jpeg;*.jpg;*.bmp;*.xpm;*.dds;*.psd;*.webp;*.tiff;*.tga;*.dds;*.dib;*.icns;*.ico;*.im;*.msp;*.wmf;*.emf;*.pcx;*.pbm;*.ppm;*.pgm;*.pnm;*.sgi;*.blp;*.eps;*.sun;*.wal"),
                                                                                    ("All files", "*.*")))
@@ -649,6 +649,84 @@ def emboss():
         winsound.PlaySound(editsound, winsound.SND_FILENAME)
 
 
+def croptheimage():
+    global sizeentry
+    global newsize
+    size = int(sizeentry.get())
+    xy1 = 256 - size
+    xy2 = 256 + size
+    randomname1 = random.randint(1, 10000)
+    randomname2 = random.randint(1, 10000)
+    randomname3 = randomname1 + randomname2
+    if counter == 0:
+        global im1pil
+        global im1tk
+        im1pil = im1pil.crop((xy1, xy1, xy2, xy2))
+        im1pil = im1pil.resize(newsize, 0)
+        im1pil.save(str(randomname3) + ".png")
+        im1tk = PhotoImage(file=str(randomname3) + ".png")
+        imageLabel.config(image=im1tk)
+        os.remove(str(randomname3) + ".png")
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
+    if counter == 1:
+        global im2pil
+        global im2tk
+        im2pil = im2pil.crop((xy1, xy1, xy2, xy2))
+        im2pil = im2pil.resize(newsize, 0)
+        im2pil.save(str(randomname3) + ".png")
+        im2tk = PhotoImage(file=str(randomname3) + ".png")
+        imageLabel.config(image=im2tk)
+        os.remove(str(randomname3) + ".png")
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
+    if counter == 2:
+        global im3pil
+        global im3tk
+        im3pil = im3pil.crop((xy1, xy1, xy2, xy2))
+        im3pil = im3pil.resize(newsize, 0)
+        im3pil.save(str(randomname3) + ".png")
+        im3tk = PhotoImage(file=str(randomname3) + ".png")
+        imageLabel.config(image=im3tk)
+        os.remove(str(randomname3) + ".png")
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
+    if counter == 3:
+        global im4pil
+        global im4tk
+        im4pil = im4pil.crop((xy1, xy1, xy2, xy2))
+        im4pil = im4pil.resize(newsize, 0)
+        im4pil.save(str(randomname3) + ".png")
+        im4tk = PhotoImage(file=str(randomname3) + ".png")
+        imageLabel.config(image=im4tk)
+        os.remove(str(randomname3) + ".png")
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
+    if counter == 4:
+        global im5pil
+        global im5tk
+        im5pil = im5pil.crop((xy1, xy1, xy2, xy2))
+        im5pil = im5pil.resize(newsize, 0)
+        im5pil.save(str(randomname3) + ".png")
+        im5tk = PhotoImage(file=str(randomname3) + ".png")
+        imageLabel.config(image=im5tk)
+        os.remove(str(randomname3) + ".png")
+        winsound.PlaySound(editsound, winsound.SND_FILENAME)
+
+
+def cropimage():
+    global sizeentry
+    cropwindow = Toplevel(root)
+    cropwindow.title("Input Cropping Points")
+    cropwindow.geometry("350x200")
+    cropwindow.minsize(350, 200)
+    cropwindow.maxsize(350, 200)
+    cropwindow.resizable(False, False)
+    sizelabel = Label(cropwindow, width=50, text='Size Of Pixels From Center')
+    sizelabel.pack()
+    sizeentry = Entry(cropwindow, width=50)
+    sizeentry.pack()
+    cropbutton = Button(cropwindow, text='Crop', command=croptheimage)
+    cropbutton.pack()
+    cropwindow.mainloop()
+
+
 def musicon():
     pygame.mixer.music.unpause()
 
@@ -663,19 +741,19 @@ def helpinfo():
 
     helpwindow = Toplevel(root)
     helpwindow.title("Info")
-    helpwindow.geometry("350x150")
-    helpwindow.minsize(350, 150)
-    helpwindow.maxsize(350, 150)
+    helpwindow.geometry("350x160")
+    helpwindow.minsize(350, 160)
+    helpwindow.maxsize(350, 160)
     helpwindow.resizable(False, False)
     helptext = Label(helpwindow,
-                     text="Credits:\nPython: Python Software Foundation.\nTkinter: Steen Lumholt and Guido van Rossum.\nPillow: Fredrik Lundh, Jeffrey A. Clark.\nPygame: Pete Shinners.\nWinsound: Python Software Foundation\nRandom: Python Software Foundation.\nOS: Python Software Foundation.\nWebBrowser: Python Software Foundation.",
+                     text="Credits:\nPython: Python Software Foundation.\nTkinter: Steen Lumholt and Guido van Rossum.\nPillow: Fredrik Lundh, Jeffrey A. Clark.\nPygame: Pete Shinners.\nWinsound: Python Software Foundation\nRandom: Python Software Foundation.\nOS: Python Software Foundation.\nWebBrowser: Python Software Foundation.\nMusic and sounds by Nintendo.",
                      font=('Minecraft Pixel Font 5x5 Regular', 6))
     helptext.pack()
     githublink = Label(helpwindow, text='Source Code', font=('Minecraft Pixel Font 5x5 Regular', 22), fg="blue",
                        cursor="hand2")
     githublink.pack()
     githublink.bind("<Button-1>", lambda e:
-    callback("https://github.com/LandonPerkinsProsser/SimpleImageSlideshow"))
+    callback("https://github.com/LandonPerkinsProsser/SimpleImageGalleryFilterer"))
     helpwindow.mainloop()
 
 
@@ -699,6 +777,7 @@ filemenu2.add_command(label="Smooth", command=smoothen)
 filemenu2.add_command(label="Detail", command=detail)
 filemenu2.add_command(label="Contour", command=contour)
 filemenu2.add_command(label="Emboss", command=emboss)
+filemenu2.add_command(label="Crop", command=cropimage)
 menubar1.add_cascade(label="Edit", menu=filemenu2)
 filemenu3 = Menu(menubar1, tearoff=0)
 filemenu3.add_command(label="Music On", command=musicon)
@@ -709,7 +788,7 @@ filemenu4.add_command(label="Info", command=helpinfo)
 menubar1.add_cascade(label="Help", menu=filemenu4)
 root.config(menu=menubar1)
 nextbutton = Button(root, text="Next Image", font=('Minecraft Pixel Font 5x5 Regular', 20), command=nextimage)
-backbutton = Button(root, text="Last Image", font=('Minecraft Pixel Font 5x5 Regular', 20), command=lastimage)
+backbutton = Button(root, text="Previous Image", font=('Minecraft Pixel Font 5x5 Regular', 20), command=lastimage)
 infoLabel.pack()
 imageLabel.pack()
 nextbutton.pack()
