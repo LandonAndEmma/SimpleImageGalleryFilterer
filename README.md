@@ -1,5 +1,5 @@
 SIGF is a user-friendly Python application created by Landon Perkins at Prosser that allows you to browse a collection of images, apply various image filters, convert images to PNG format, and save or load images with ease.
-
+[NOTE: THIS PROJECT IS COMPLETE AND MAY NO LONGER GET UPDATES!]
 ## Table of Contents
 
 - [Features](#features)
@@ -57,8 +57,8 @@ SIGF relies on several Python libraries and modules. Ensure you have the followi
 SIGF is designed to be intuitive and user-friendly. Here's how to use the application:
 
 - **Navigation:**
-  - Click the "Next Image" button to navigate through the image gallery.
-  - Click the "Last Image" button to navigate through the image gallery.
+  - Click the "Next Image" button to go forward a image in the image gallery.
+  - Click the "Previous Image" button to go back a image in the image gallery.
   - Use the "File" menu to open, save, or reset images.
 
 - **Image Filters:**
