@@ -26,8 +26,7 @@ SIGF relies on several Python libraries and modules. Ensure you have the followi
 - **Python:** SIGF is built with Python and should work on any system with Python installed.
 - **Tkinter:** Tkinter is used for the graphical user interface and opening save and open file windows.
 - **Pillow:** Pillow is used for image processing and manipulation.
-- **Pygame:** Pygame is used to play background music.
-- **WinSound:** A standard python module for playing sound effects.
+- **Pygame:** Pygame is used to play background music and sound effects.
 - **Random:** A Python standard library module used for generating random numbers.
 - **OS:** A Python standard library module used for operating system-related functions.
 - **WebBrowser:** A Python standard library module used for opening web links.
@@ -44,7 +43,7 @@ SIGF relies on several Python libraries and modules. Ensure you have the followi
    - Ensure you have Python installed on your system.
    - Install the required Python packages using pip:
      ```shell
-     pip install pillow pygame
+     pip install pillow pygame tkinter
      ```
 
 3. **Run the Application:**
