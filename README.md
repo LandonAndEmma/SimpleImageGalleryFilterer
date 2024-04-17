@@ -43,7 +43,7 @@ SIGF relies on several Python libraries and modules. Ensure you have the followi
    - Ensure you have Python installed on your system.
    - Install the required Python packages using pip:
      ```shell
-     pip install pillow pygame tkinter
+     pip install pillow pygame tk
      ```
 
 3. **Run the Application:**
