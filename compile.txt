@@ -1,0 +1,1 @@
+pyinstaller --clean --onefile -y -n "SimpleImageGalleryFilterer" --add-data="sounds/*;sounds" --add-data="images/*;images" --add-data="music/*;music" main.py
